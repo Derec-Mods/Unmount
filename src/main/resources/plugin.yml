@@ -1,0 +1,8 @@
+name: Unmount
+version: '1.0.0.0'
+main: io.github.derec4.unmount.Unmount
+api-version: '1.18'
+prefix: DerexXD
+authors: [ DerexXD ]
+description: Automatically break minecarts, quality of life plugin!
+website: https://www.derekchen.dev/
