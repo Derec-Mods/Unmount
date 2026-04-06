@@ -14,23 +14,25 @@ import org.bukkit.util.Vector;
 public class MinecartCollisionListener implements Listener {
 
     private final JavaPlugin plugin;
-    // Speed threshold for "bullet" carts. Adjustable.
-    private final double bulletSpeedThreshold = 0.5;
-
-    public MinecartCollisionListener(JavaPlugin plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler
     public void onTrackClearCollision(VehicleEntityCollisionEvent event) {
+        // Extra guard: even if listener is registered, allow runtime toggling via /reload etc.
+        if (!ConfigManager.COLLISION_ENABLED) return;
+        // Extra guard: even if listener is registered, allow runtime toggling via /reload etc.
+        if (!Unmount.COLLISION_ENABLED) return;
+
+
         // Ensure both the vehicle and the collided entity are Minecarts
         if (!(event.getVehicle() instanceof Minecart movingCart)) return;
         if (!(event.getEntity() instanceof Minecart hitCart)) return;
 
         Vector velocity = movingCart.getVelocity();
         double speed = velocity.length();
-
-        if (speed < bulletSpeedThreshold) return;
+        if (speed < Unmount.COLLISION_BULLET_SPEED_THRESHOLD) return;
+        if (speed < ConfigManager.COLLISION_BULLET_SPEED_THRESHOLD) return;
 
         // Only break empty, vanilla passenger minecarts
         if (!hitCart.getPassengers().isEmpty()) return;
@@ -62,5 +64,3 @@ public class MinecartCollisionListener implements Listener {
             }
         }.runTaskLater(plugin, 1L);
     }
-}
-
