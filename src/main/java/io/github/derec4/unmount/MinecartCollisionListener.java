@@ -22,7 +22,6 @@ public class MinecartCollisionListener implements Listener {
 
     @EventHandler
     public void onTrackClearCollision(VehicleEntityCollisionEvent event) {
-        // config checks
         if (!ConfigManager.COLLISION_ENABLED) {
             return;
         }
@@ -30,7 +29,7 @@ public class MinecartCollisionListener implements Listener {
             return;
         }
 
-        // minecart vs minecart only
+        // only minecart vs minecart
         if (!(event.getVehicle() instanceof Minecart movingCart)) {
             return;
         }
@@ -47,7 +46,6 @@ public class MinecartCollisionListener implements Listener {
             return;
         }
 
-        // only break empty, vanilla minecarts
         if (!hitCart.getPassengers().isEmpty()) {
             return;
         }

@@ -1,10 +1,15 @@
 # Unmount plugin configuration
 #
+
+# auto-break:
+#    enabled: If true, minecarts automatically break when players dismount. You can control this behavior per player with a command
+auto-break:
+  enabled: true
+
 # collision:
 #   enabled: If true, a fast minecart that hits an empty vanilla minecart will "snowplow" it (break it)
 #            and keep moving forward without bounce-back.
 #   bulletSpeedThreshold: Speed needed to trigger the snowplow behavior.
-
 collision:
   enabled: false
   bulletSpeedThreshold: 0.5

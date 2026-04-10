@@ -9,6 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class ConfigManager {
 
     // Config-backed static values (read on startup)
+    public static boolean AUTO_BREAK_ENABLED = true;
     public static boolean COLLISION_ENABLED = false;
     public static double COLLISION_BULLET_SPEED_THRESHOLD = 0.5;
 
@@ -32,6 +33,7 @@ public final class ConfigManager {
         // Read config values
         plugin.reloadConfig();
 
+        AUTO_BREAK_ENABLED = plugin.getConfig().getBoolean("auto-break.enabled", true);
         COLLISION_ENABLED = plugin.getConfig().getBoolean("collision.enabled", false);
         COLLISION_BULLET_SPEED_THRESHOLD = plugin.getConfig().getDouble("collision.bulletSpeedThreshold", 0.5);
 
@@ -46,4 +48,3 @@ public final class ConfigManager {
         }
     }
 }
-
