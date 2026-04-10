@@ -14,46 +14,60 @@ import org.bukkit.util.Vector;
 public class MinecartCollisionListener implements Listener {
 
     private final JavaPlugin plugin;
+
+    public MinecartCollisionListener(JavaPlugin plugin) {
         this.plugin = plugin;
     }
 
+
     @EventHandler
     public void onTrackClearCollision(VehicleEntityCollisionEvent event) {
-        // Extra guard: even if listener is registered, allow runtime toggling via /reload etc.
-        if (!ConfigManager.COLLISION_ENABLED) return;
-        // Extra guard: even if listener is registered, allow runtime toggling via /reload etc.
-        if (!Unmount.COLLISION_ENABLED) return;
+        // config checks
+        if (!ConfigManager.COLLISION_ENABLED) {
+            return;
+        }
+        if (!Unmount.COLLISION_ENABLED) {
+            return;
+        }
 
-
-        // Ensure both the vehicle and the collided entity are Minecarts
-        if (!(event.getVehicle() instanceof Minecart movingCart)) return;
-        if (!(event.getEntity() instanceof Minecart hitCart)) return;
+        // minecart vs minecart only
+        if (!(event.getVehicle() instanceof Minecart movingCart)) {
+            return;
+        }
+        if (!(event.getEntity() instanceof Minecart hitCart)) {
+            return;
+        }
 
         Vector velocity = movingCart.getVelocity();
         double speed = velocity.length();
-        if (speed < Unmount.COLLISION_BULLET_SPEED_THRESHOLD) return;
-        if (speed < ConfigManager.COLLISION_BULLET_SPEED_THRESHOLD) return;
-
-        // Only break empty, vanilla passenger minecarts
-        if (!hitCart.getPassengers().isEmpty()) return;
-        if (hitCart.getType() != EntityType.MINECART) return;
-
-        // Cancel vanilla collision physics (prevents bounce-back)
-        event.setCancelled(true);
-        try {
-            // newer Spigot/Paper expose this method to specifically cancel collision physics
-            event.setCollisionCancelled(true);
-        } catch (NoSuchMethodError ignored) {
-            // Older API: ignore if method doesn't exist
+        if (speed < Unmount.COLLISION_BULLET_SPEED_THRESHOLD) {
+            return;
+        }
+        if (speed < ConfigManager.COLLISION_BULLET_SPEED_THRESHOLD) {
+            return;
         }
 
-        // Drop the minecart item so it isn't lost
-        hitCart.getWorld().dropItemNaturally(hitCart.getLocation(), new ItemStack(Material.MINECART));
+        // only break empty, vanilla minecarts
+        if (!hitCart.getPassengers().isEmpty()) {
+            return;
+        }
+        if (hitCart.getType() != EntityType.MINECART) {
+            return;
+        }
 
-        // Remove the abandoned cart from world
+        // stop bounce
+        event.setCancelled(true);
+        try {
+            event.setCollisionCancelled(true);
+        } catch (NoSuchMethodError ignored) {
+            // older api
+        }
+
+        // drop cart, delete entity
+        hitCart.getWorld().dropItemNaturally(hitCart.getLocation(), new ItemStack(Material.MINECART));
         hitCart.remove();
 
-        // Re-apply the velocity to the moving cart immediately and on the next tick
+        // keep speed
         movingCart.setVelocity(velocity);
         new BukkitRunnable() {
             @Override
@@ -64,3 +78,5 @@ public class MinecartCollisionListener implements Listener {
             }
         }.runTaskLater(plugin, 1L);
     }
+
+}
