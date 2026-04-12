@@ -1,5 +1,6 @@
 package io.github.derec4.unmount;
 
+import io.github.derec4.unmount.commands.ToggleCartCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -22,6 +23,14 @@ public final class Unmount extends JavaPlugin {
         AUTO_BREAK_ENABLED = ConfigManager.AUTO_BREAK_ENABLED;
         COLLISION_ENABLED = ConfigManager.COLLISION_ENABLED;
         COLLISION_BULLET_SPEED_THRESHOLD = ConfigManager.COLLISION_BULLET_SPEED_THRESHOLD;
+
+        // Commands
+        var toggleCmd = getCommand("togglecart");
+        if (toggleCmd != null) {
+            toggleCmd.setExecutor(new ToggleCartCommand(this));
+        } else {
+            getLogger().warning("Command 'togglecart' is missing from plugin.yml; command won't be available.");
+        }
 
         if (AUTO_BREAK_ENABLED) {
             getServer().getPluginManager().registerEvents(new MinecartDismountAutoBreakListener(), this);

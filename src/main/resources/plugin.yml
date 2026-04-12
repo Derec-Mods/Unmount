@@ -6,3 +6,16 @@ prefix: DerexXD
 authors: [ DerexXD ]
 description: Automatically break minecarts, quality of life plugin!
 website: https://www.derekchen.dev/
+
+commands:
+  togglecart:
+    description: Toggle minecart auto-break on dismount for yourself.
+    usage: /togglecart
+    aliases: [autobreak]
+    permission: unmount.togglecart
+    permission-message: You don't have permission to use this command.
+
+permissions:
+  unmount.togglecart:
+    description: Allows using /togglecart (and /autobreak)
+    default: true

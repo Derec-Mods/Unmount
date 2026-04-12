@@ -32,6 +32,7 @@ public class MinecartDismountAutoBreakListener implements Listener {
 
         // pdc check for player toggle
         NamespacedKey toggleKey = new NamespacedKey(plugin, "autobreak_disabled");
+
         if (player.getPersistentDataContainer().has(toggleKey, PersistentDataType.BYTE)) {
             plugin.getLogger().info("[unmount] player has auto-break toggled off, ignoring");
             return;
