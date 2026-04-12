@@ -18,8 +18,6 @@ public class MinecartDismountAutoBreakListener implements Listener {
         }
 
         // debug: event fired
-        plugin.getLogger().info("[unmount] vehicle exit event fired: exited=" + event.getExited() + ", vehicle=" + event.getVehicle());
-
         if (!ConfigManager.AUTO_BREAK_ENABLED || !Unmount.AUTO_BREAK_ENABLED) {
             plugin.getLogger().info("[unmount] auto-break disabled in config, ignoring exit");
             return;
@@ -27,17 +25,14 @@ public class MinecartDismountAutoBreakListener implements Listener {
 
         Entity exited = event.getExited();
         if (!(exited instanceof Player)) {
-            plugin.getLogger().info("[unmount] exited entity is not a player, ignoring: " + exited.getType());
             return;
         }
 
         if (!(event.getVehicle() instanceof Minecart cart)) {
-            plugin.getLogger().info("[unmount] vehicle is not a minecart, ignoring: " + event.getVehicle().getType());
             return;
         }
 
         if (cart.isDead() || !cart.isValid()) {
-            plugin.getLogger().info("[unmount] cart is dead or invalid, ignoring");
             return;
         }
 
@@ -56,7 +51,9 @@ public class MinecartDismountAutoBreakListener implements Listener {
             }
 
             plugin.getLogger().info("[unmount] breaking empty minecart");
-            cart.setDamage(100);
+//            cart.setDamage(100); 4.11.2026 idk why this doesnt work sigh
+            cart.getWorld().dropItemNaturally(cart.getLocation(), new org.bukkit.inventory.ItemStack(org.bukkit.Material.MINECART));
+            cart.remove();
         });
     }
 }
