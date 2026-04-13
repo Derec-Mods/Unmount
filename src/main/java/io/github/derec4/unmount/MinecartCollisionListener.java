@@ -6,7 +6,6 @@ import org.bukkit.entity.Minecart;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.vehicle.VehicleEntityCollisionEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
@@ -62,7 +61,7 @@ public class MinecartCollisionListener implements Listener {
         }
 
         // drop cart, delete entity
-        hitCart.getWorld().dropItemNaturally(hitCart.getLocation(), new ItemStack(Material.MINECART));
+    MinecartDropUtil.dropMinecartLikeVanilla(hitCart);
         hitCart.remove();
 
         // keep speed

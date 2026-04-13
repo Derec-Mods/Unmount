@@ -62,7 +62,8 @@ public class MinecartDismountAutoBreakListener implements Listener {
 
             plugin.getLogger().info("[unmount] breaking empty minecart");
 //            cart.setDamage(100); 4.11.2026 idk why this doesnt work sigh
-            cart.getWorld().dropItemNaturally(cart.getLocation(), new org.bukkit.inventory.ItemStack(org.bukkit.Material.MINECART));
+            // drop with name
+            MinecartDropUtil.dropMinecartLikeVanilla(cart);
             cart.remove();
         });
     }
