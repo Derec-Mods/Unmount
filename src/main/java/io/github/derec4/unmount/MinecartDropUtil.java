@@ -33,11 +33,6 @@ final class MinecartDropUtil {
     private static Material mapTypeToItem(EntityType type) {
         return switch (type) {
             case MINECART -> Material.MINECART;
-            case CHEST_MINECART -> Material.CHEST_MINECART;
-            case FURNACE_MINECART -> Material.FURNACE_MINECART;
-            case TNT_MINECART -> Material.TNT_MINECART;
-            case HOPPER_MINECART -> Material.HOPPER_MINECART;
-            case COMMAND_BLOCK_MINECART -> Material.COMMAND_BLOCK_MINECART;
             default -> Material.MINECART;
         };
     }
