@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "unmount",
+  "version": "${version}",
+  "name": "Unmount",
+  "description": "Automatically break minecarts on dismount and optionally snowplow empty carts so railways stay clean.",
+  "authors": [
+    "DerexXD"
+  ],
+  "contact": {
+    "homepage": "https://www.derekchen.dev/",
+    "sources": "https://github.com/DerexXD/Unmount",
+    "issues": "https://github.com/DerexXD/Unmount/issues"
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.derec4.unmount.Unmount"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
