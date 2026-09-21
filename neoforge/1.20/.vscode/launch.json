@@ -1,0 +1,53 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Client",
+      "presentation": {
+        "group": "Mod Development - unmount",
+        "order": 0
+      },
+      "projectName": "unmount",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@C:\\Users\\DerexXD\\Documents\\GitHub\\Unmount\\neoforge\\1.20\\build\\moddev\\clientRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@C:\\Users\\DerexXD\\Documents\\GitHub\\Unmount\\neoforge\\1.20\\build\\moddev\\clientRunVmArgs.txt",
+        "-Dfml.modFolders\u003dunmount%%C:\\Users\\DerexXD\\Documents\\GitHub\\Unmount\\neoforge\\1.20\\bin\\main"
+      ],
+      "cwd": "${workspaceFolder}\\run",
+      "env": {
+        "MOD_CLASSES": "unmount%%C:\\Users\\DerexXD\\Documents\\GitHub\\Unmount\\neoforge\\1.20\\bin\\main"
+      },
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Server",
+      "presentation": {
+        "group": "Mod Development - unmount",
+        "order": 1
+      },
+      "projectName": "unmount",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@C:\\Users\\DerexXD\\Documents\\GitHub\\Unmount\\neoforge\\1.20\\build\\moddev\\serverRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@C:\\Users\\DerexXD\\Documents\\GitHub\\Unmount\\neoforge\\1.20\\build\\moddev\\serverRunVmArgs.txt",
+        "-Dfml.modFolders\u003dunmount%%C:\\Users\\DerexXD\\Documents\\GitHub\\Unmount\\neoforge\\1.20\\bin\\main"
+      ],
+      "cwd": "${workspaceFolder}\\run",
+      "env": {
+        "MOD_CLASSES": "unmount%%C:\\Users\\DerexXD\\Documents\\GitHub\\Unmount\\neoforge\\1.20\\bin\\main"
+      },
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    }
+  ]
+}

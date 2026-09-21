@@ -1,0 +1,26 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+issueTrackerURL="https://github.com/DerexXD/Unmount/issues"
+
+[[mods]]
+modId="unmount"
+version="1.0.5.1"
+displayName="Unmount"
+displayURL="https://www.derekchen.dev/"
+authors="DerexXD"
+description='''Automatically break minecarts on dismount and optionally snowplow empty carts so railways stay clean.'''
+
+[[dependencies.unmount]]
+modId="forge"
+mandatory=true
+versionRange="[47,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.unmount]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.1,1.21)"
+ordering="NONE"
+side="BOTH"
