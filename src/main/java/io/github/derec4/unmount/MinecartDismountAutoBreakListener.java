@@ -1,13 +1,12 @@
 package io.github.derec4.unmount;
 
-import org.bukkit.NamespacedKey;
+import io.github.derec4.unmount.pdc.PDCManager;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Minecart;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.vehicle.VehicleExitEvent;
-import org.bukkit.persistence.PersistentDataType;
 
 public class MinecartDismountAutoBreakListener implements Listener {
 
@@ -20,7 +19,7 @@ public class MinecartDismountAutoBreakListener implements Listener {
         }
 
         // debug: event fired
-        if (!ConfigManager.AUTO_BREAK_ENABLED || !Unmount.AUTO_BREAK_ENABLED) {
+        if (!ConfigManager.AUTO_BREAK_ENABLED) {
             plugin.getLogger().info("[unmount] auto-break disabled in config, ignoring exit");
             return;
         }
@@ -31,9 +30,7 @@ public class MinecartDismountAutoBreakListener implements Listener {
         }
 
         // pdc check for player toggle
-        NamespacedKey toggleKey = new NamespacedKey(plugin, "autobreak_disabled");
-
-        if (player.getPersistentDataContainer().has(toggleKey, PersistentDataType.BYTE)) {
+        if (PDCManager.isAutoBreakDisabled(player.getUniqueId())) {
             plugin.getLogger().info("[unmount] player has auto-break toggled off, ignoring");
             return;
         }

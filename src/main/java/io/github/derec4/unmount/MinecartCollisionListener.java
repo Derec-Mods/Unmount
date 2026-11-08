@@ -24,9 +24,6 @@ public class MinecartCollisionListener implements Listener {
         if (!ConfigManager.COLLISION_ENABLED) {
             return;
         }
-        if (!Unmount.COLLISION_ENABLED) {
-            return;
-        }
 
         // only minecart vs minecart
         if (!(event.getVehicle() instanceof Minecart movingCart)) {
@@ -38,9 +35,6 @@ public class MinecartCollisionListener implements Listener {
 
         Vector velocity = movingCart.getVelocity();
         double speed = velocity.length();
-        if (speed < Unmount.COLLISION_BULLET_SPEED_THRESHOLD) {
-            return;
-        }
         if (speed < ConfigManager.COLLISION_BULLET_SPEED_THRESHOLD) {
             return;
         }

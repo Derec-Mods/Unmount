@@ -6,7 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  * Simple config manager that ensures the config exists and reads values into static fields.
  * Values are loaded with reasonable defaults and can be reloaded by calling load(plugin).
  */
-public final class ConfigManager {
+public class ConfigManager {
 
     // Config-backed static values (read on startup)
     public static boolean AUTO_BREAK_ENABLED = true;

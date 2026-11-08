@@ -10,7 +10,7 @@ website: https://www.derekchen.dev/
 commands:
   togglecart:
     description: Toggle minecart auto-break on dismount for yourself.
-    usage: /togglecart
+    usage: /togglecart [player | check <player> | list]
     aliases: [autobreak]
     permission: unmount.togglecart
     permission-message: You don't have permission to use this command.
@@ -19,3 +19,6 @@ permissions:
   unmount.togglecart:
     description: Allows using /togglecart (and /autobreak)
     default: true
+  unmount.togglecart.others:
+    description: Allows checking or toggling auto-break for other players and listing disabled players.
+    default: op

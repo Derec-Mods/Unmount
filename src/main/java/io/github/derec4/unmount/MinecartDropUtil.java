@@ -6,7 +6,7 @@ import org.bukkit.entity.Minecart;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-final class MinecartDropUtil {
+class MinecartDropUtil {
 
     private MinecartDropUtil() {
     }
@@ -16,7 +16,7 @@ final class MinecartDropUtil {
     }
 
     private static ItemStack createMinecartDrop(Minecart cart) {
-        ItemStack drop = new ItemStack(mapTypeToItem(cart.getType()));
+        ItemStack drop = new ItemStack(Material.MINECART);
 
         String customName = cart.getCustomName();
         if (customName != null && !customName.isBlank()) {
@@ -28,12 +28,5 @@ final class MinecartDropUtil {
         }
 
         return drop;
-    }
-
-    private static Material mapTypeToItem(EntityType type) {
-        return switch (type) {
-            case MINECART -> Material.MINECART;
-            default -> Material.MINECART;
-        };
     }
 }
